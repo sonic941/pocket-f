@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+MIDlet-Name: PocketFC19
+MIDlet-Version: 1.0.0
+MIDlet-Vendor: CustomDev
+MIDlet-1: PocketFC19, , PocketFC19
+MicroEdition-Profile: MIDP-2.0
+MicroEdition-Configuration: CLDC-1.1
