@@ -1,4 +1,3 @@
-
 Manifest-Version: 1.0
 MIDlet-Name: PocketFC19
 MIDlet-Version: 1.0.0
