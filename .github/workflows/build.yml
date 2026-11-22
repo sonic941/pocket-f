@@ -16,9 +16,20 @@ jobs:
       - name: Fetch J2ME Stubs & ProGuard
         run: |
           mkdir -p libs build classes
-          mvn dependency:copy -Dartifact=org.microemu:midp20:2.0.4 -DoutputDirectory=libs
-          mvn dependency:copy -Dartifact=org.microemu:cldcapi11:2.0.4 -DoutputDirectory=libs
-          mvn dependency:copy -Dartifact=net.sf.proguard:proguard-base:6.2.2 -DoutputDirectory=libs
+          cat << 'EOF' > pom.xml
+          <project>
+            <modelVersion>4.0.0</modelVersion>
+            <groupId>tmp</groupId>
+            <artifactId>tmp</artifactId>
+            <version>1.0</version>
+            <dependencies>
+              <dependency><groupId>org.microemu</groupId><artifactId>midp20</artifactId><version>2.0.4</version></dependency>
+              <dependency><groupId>org.microemu</groupId><artifactId>cldcapi11</artifactId><version>2.0.4</version></dependency>
+              <dependency><groupId>net.sf.proguard</groupId><artifactId>proguard-base</artifactId><version>6.2.2</version></dependency>
+            </dependencies>
+          </project>
+          EOF
+          mvn dependency:copy-dependencies -DoutputDirectory=libs
 
       - name: Compile and Preverify
         run: |
