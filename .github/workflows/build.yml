@@ -23,8 +23,8 @@ jobs:
             <artifactId>tmp</artifactId>
             <version>1.0</version>
             <dependencies>
-              <dependency><groupId>org.microemu</groupId><artifactId>midp20</artifactId><version>2.0.4</version></dependency>
-              <dependency><groupId>org.microemu</groupId><artifactId>cldcapi11</artifactId><version>2.0.4</version></dependency>
+              <dependency><groupId>org.microemu</groupId><artifactId>microemu-midp</artifactId><version>2.0.4</version></dependency>
+              <dependency><groupId>org.microemu</groupId><artifactId>microemu-cldc</artifactId><version>2.0.4</version></dependency>
               <dependency><groupId>net.sf.proguard</groupId><artifactId>proguard-base</artifactId><version>6.2.2</version></dependency>
             </dependencies>
           </project>
@@ -33,9 +33,9 @@ jobs:
 
       - name: Compile and Preverify
         run: |
-          javac -source 1.3 -target 1.3 -bootclasspath libs/cldcapi11-2.0.4.jar:libs/midp20-2.0.4.jar -d classes PocketFC19.java
+          javac -source 1.3 -target 1.3 -bootclasspath libs/microemu-cldc-2.0.4.jar:libs/microemu-midp-2.0.4.jar -d classes PocketFC19.java
           jar cfm build/raw.jar MANIFEST.MF -C classes .
-          java -jar libs/proguard-base-6.2.2.jar -injars build/raw.jar -outjars build/PocketFC19.jar -libraryjars libs/cldcapi11-2.0.4.jar -libraryjars libs/midp20-2.0.4.jar -microedition -dontobfuscate -keep "public class PocketFC19"
+          java -jar libs/proguard-base-6.2.2.jar -injars build/raw.jar -outjars build/PocketFC19.jar -libraryjars libs/microemu-cldc-2.0.4.jar -libraryjars libs/microemu-midp-2.0.4.jar -microedition -dontobfuscate -keep "public class PocketFC19"
 
       - name: Upload PocketFC19.jar
         uses: actions/upload-artifact@v4
